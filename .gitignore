@@ -3,7 +3,6 @@
 
 .idea
 
-src/common
 src/teacher
 src/student
 src/db.ts
