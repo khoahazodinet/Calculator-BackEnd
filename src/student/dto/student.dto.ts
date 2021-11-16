@@ -1,21 +1,18 @@
-export interface FindStudentResponseDto {
-    id: string;
+// request
+
+export interface CreateStudentRequestDto {
     name: string;
     teacherId: string;
 }
 
+export interface UpdateStudentResponseDto {
+    studentId: string;
+    name: string;
+}
+
+// response
 export interface StudentResponseDto {
     id: string;
     name: string;
     teacherId: string;
-}
-
-export class CreateStudentDto {
-    name: string;
-    teacherId: string;
-}
-
-export class UpdateStudentDto {
-    studentId: string;
-    name: string;
 }

@@ -1,23 +1,29 @@
 import {Controller, Get, Param, Put} from '@nestjs/common';
+import {FindStudentsByTeacherIdRequestDto} from "./dto/teacher.dto";
+import {StudentResponseDto} from "../student/dto/student.dto";
+import {StudentService} from "../student/student.service";
 
 interface studentIdAndTeacherId {
-    teacherId: string, studentId?: string
+    teacherId: string,
+    studentId?: string
 }
 
-@Controller('teacher/:teacherId/students')
+@Controller('teachers/:teacherId/students')
 export class StudentTeacherController {
+    constructor(private readonly studentService: StudentService) {}
+
     @Get()
-    getStudents(
-        @Param() param: studentIdAndTeacherId
-    ){
+    getStudentsByTeacherId(
+        @Param() param: FindStudentsByTeacherIdRequestDto
+    ) {
         const {teacherId} = param;
-        return 'Get all students with teacher Id ' + teacherId;
+        return this.studentService.getStudentsByTeacherId(teacherId)
     }
 
     @Put('/:studentId')
     updateStudentTeacher(
         @Param() param: studentIdAndTeacherId
-    ){
+    ) {
         const {teacherId, studentId} = param;
         return 'Update student teacher ' + JSON.stringify(param);
     }
